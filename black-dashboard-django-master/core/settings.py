@@ -33,7 +33,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.home'  # Enable the inner home (home)
+    'apps.home',  # Enable the inner home (home)
+    'apps.authentication',
+
 ]
 
 MIDDLEWARE = [
@@ -81,6 +83,9 @@ DATABASES = {
         'PASSWORD' : 'chc12345', # 계정 비밀번호
         'HOST': 'chc-db.cdqf0gxh6nhf.ap-northeast-2.rds.amazonaws.com', # DB 서버 호스트
         'PORT': '3306', # DB 서버 포트
+        'OPTIONS': {
+            'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
 
     }
 }

@@ -8,6 +8,16 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+from .models import Park
+from django.shortcuts import render
+
+
+@login_required(login_url="/login/")
+def ui_tables(request):
+    table_log = Park.objects.all()
+    context = {'table_log': table_log}
+
+    return render(request, "home/ui-tables.html", context)
 
 
 @login_required(login_url="/login/")
@@ -23,6 +33,7 @@ def pages(request):
     context = {}
     # All resource paths end in .html.
     # Pick out the html file name from the url. And load that template.
+
     try:
 
         load_template = request.path.split('/')[-1]
@@ -42,3 +53,4 @@ def pages(request):
     except:
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
+
