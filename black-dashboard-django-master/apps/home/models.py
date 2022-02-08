@@ -6,8 +6,6 @@ Copyright (c) 2019 - present AppSeed.us
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
 
 class Park(models.Model):
     t_id = models.AutoField(db_column='id', primary_key=True)
